@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>your page title goes here</title>
+    <meta charset="utf-8" />
+  </head>
+  <body>
+    <script>
+
+      // 1. exercise
+
+      var product = function(a, b) {
+        return a * b;
+      }
+
+      function totalArea(array) {
+        result = 0;
+        array.forEach(function (subarray) {
+          result += subarray.reduce(product);
+        });
+
+        return result;
+      }
+
+      var rectangles = [[3, 4], [6, 6], [1, 8], [9, 9], [2, 2]];
+
+      // function totalArea(rectangles) {
+      //   var areas = rectangles.map(function (rectangle) {
+      //     return rectangle[0] * rectangle[1];
+      //   });
+
+      //   return areas.reduce(function (sum, area) {
+      //     return sum + area;
+      //   });
+      // }
+
+      // 2. exercise
+
+      function totalSquareArea(rectangles) {
+        var squares = rectangles.filter(function (rectangle) {
+          return rectangle[0] === rectangle[1];
+        });
+
+        var areas = squares.map(function (rectangle) {
+          return rectangle[0] * rectangle[1];
+        });
+
+        return areas.reduce(function (sum, area) {
+          return sum + area;
+        });
+      }
+
+      var rectangles = [[3, 4], [6, 6], [1, 8], [9, 9], [2, 2]];
+
+      // 3. exercise
+
+      function processReleaseData(data) {
+        return data.filter(function (release){
+          return release.id && release.title;
+        }).map(function (release) {
+          return {
+            id: release.id,
+            title: release.title,
+          };
+        });
+      }
+
+      var newReleases = [
+        {
+          'id': 70111470,
+          'title': 'Die Hard',
+          'boxart': 'http://cdn-0.nflximg.com/images/2891/DieHard.jpg',
+          'uri': 'http://api.netflix.com/catalog/titles/movies/70111470',
+          'rating': [4.0],
+          'bookmark': [],
+        },
+        {
+          'id': 654356453,
+          'boxart': 'http://cdn-0.nflximg.com/images/2891/BadBoys.jpg',
+          'uri': 'http://api.netflix.com/catalog/titles/movies/70111470',
+          'rating': [5.0],
+          'bookmark': [{ id:432534, time:65876586 }],
+        },
+        {
+          'title': 'The Chamber',
+          'boxart': 'http://cdn-0.nflximg.com/images/2891/TheChamber.jpg',
+          'uri': 'http://api.netflix.com/catalog/titles/movies/70111470',
+          'rating': [4.0],
+          'bookmark': [],
+        },
+        {
+          'id': 675465,
+          'title': 'Fracture',
+          'boxart': 'http://cdn-0.nflximg.com/images/2891/Fracture.jpg',
+          'uri': 'http://api.netflix.com/catalog/titles/movies/70111470',
+          'rating': [5.0],
+          'bookmark': [{ id:432534, time:65876586 }],
+        },
+      ];
+
+    </script>
+  </body>
+</html>
