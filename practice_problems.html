@@ -98,6 +98,196 @@
         },
       ];
 
+      // 4. exercise
+
+      // function octalToDecimal(numberString) {
+      //   var arr = numberString.split('').reverse();
+
+      //   var arrDigits = arr.map(function(char, index) {
+      //     return Number(char) * Math.pow(8, index);
+      //   });
+
+      //   return arrDigits.reduce(function (a, b) {
+      //     return a + b;
+      //   });
+      // }
+
+      function octalToDecimal(numberString) {
+        var arr = numberString.split('').reverse();
+
+        return arr.map(function(char, index) {
+          return Number(char) * Math.pow(8, index);
+        }).reduce(function (a, b) {
+          return a + b;
+        });
+      }
+
+      // 5. exercise
+
+      function anagram(word, list) {
+        return list.filter(function(option) {
+          return sameArrays(option.split('').sort(), word.split('').sort());
+        });
+      }
+
+      function sameArrays(arr1, arr2) {
+        var i;
+
+        if (arr1.length !== arr2.length) {
+          return false;
+        };
+
+        for (i = 0; i < arr1.length; i += 1) {
+          if (arr1[i] !== arr2[i]) {
+            return false;
+          }
+        };
+
+        return true;
+      }
+
+      // 6. exercise
+
+      var bands = [
+        { name: 'sunset rubdown', country: 'UK', active: false },
+        { name: 'women', country: 'Germany', active: false },
+        { name: 'a silver mt. zion', country: 'Spain', active: true },
+      ];
+
+      function processBands(data) {
+        return data.map(function (object) {
+          var capitalized = capitalize(object.name);
+          var newName = removeDots(capitalized);
+
+          return {name: newName, country: 'Canada', active: object['active'],};
+        });
+      }
+
+      function capitalize(name) {
+        return name.split(' ').map(function (namePart) {
+          return namePart.charAt(0).toUpperCase() + namePart.slice(1);
+        }).join(' ');
+      }
+
+      function removeDots(name) {
+        var result = '';
+        var i;
+
+        for (i = 0; i < name.length; i += 1) {
+          if (name[i] !== '.') {
+            result += name[i];
+          }
+        }
+
+        return result;
+      }
+
+      // 7. exercise
+
+      function generateClassRecordSummary(scores) {
+        var allStudents = students(scores);
+        var allEx = exercises(allStudents, scores);
+        var exam = exams(allStudents, scores);
+        var avr = average(exam, allEx);
+
+        // console.log(allEx);
+        // console.log(exam);
+        console.log(avr);
+      }
+
+      function students(scores1) {
+        return Object.keys(scores1);
+      }
+
+      function exercises(students, scores) {
+        return students.map(function (student, i) {
+          return scores[students[i]].scores.exercises;
+        });
+      }
+
+      function exams(students, scores) {
+        return students.map(function (student, i) {
+          return scores[students[i]].scores.exams;
+        });
+      }
+
+      function average(exams, exercises) {
+        var examsAverage = exams.map( function (studentExam) {
+          return examsAvr(studentExam);
+        });
+
+        var exercisesAverage = exercises.map( function (studentExam) {
+          return exercisesAvr(studentExam);
+        });
+
+        return examsAverage.map( function (examAver, index) {
+          return Math.round((examAver * 0.65) + (exercisesAverage[index] * 0.35));
+        });  
+      }
+
+      function examsAvr(arr) {
+        return arr.reduce(add) / arr.length;
+      }
+
+      function exercisesAvr(arr) {
+        return arr.reduce(add);
+      }
+
+      function add(a, b) {
+        return a + b;
+      }
+
+
+      // {
+      //   studentGrades: [ '87 (B)', '73 (D)', '84 (C)', '86 (B)', '56 (F)' ],
+      //   exams: [
+      //     { average: 75.6, minimum: 50, maximum: 100 },
+      //     { average: 86.4, minimum: 70, maximum: 100 },
+      //     { average: 87.6, minimum: 60, maximum: 100 },
+      //     { average: 91.8, minimum: 80, maximum: 100 },
+      //   ],
+      // }
+
+      var studentScores = {
+        student1: {
+          id: 123456789,
+          scores: {
+            exams: [90, 95, 100, 80],
+            exercises: [20, 15, 10, 19, 15],
+          },
+        },
+        student2: {
+          id: 123456799,
+          scores: {
+            exams: [50, 70, 90, 100],
+            exercises: [0, 15, 20, 15, 15],
+          },
+        },
+        student3: {
+          id: 123457789,
+          scores: {
+            exams: [88, 87, 88, 89],
+            exercises: [10, 20, 10, 19, 18],
+          },
+        },
+        student4: {
+          id: 112233445,
+          scores: {
+            exams: [100, 100, 100, 100],
+            exercises: [10, 15, 10, 10, 15],
+          },
+        },
+        student5: {
+          id: 112233446,
+          scores: {
+            exams: [50, 80, 60, 90],
+            exercises: [10, 0, 10, 10, 0],
+          },
+        },
+      };
+
+      generateClassRecordSummary(studentScores);
+
     </script>
   </body>
 </html>
