@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>your page title goes here</title>
+    <meta charset="utf-8" />
+  </head>
+  <body>
+    <script>
+
+      // 1. exercise
+
+      function sum(number) {
+        return String(number).split('').map(function (numString) {
+          return parseInt(numString, 10);
+        }).reduce(function (total, num) {
+          return total + num;
+        });
+      }
+
+      // 2. exercise
+
+      function multiplyAllPairs(array1, array2) {
+        var result = [];
+
+        array1.forEach(function (number1) {
+          array2.forEach(function (number2) {
+            result.push(number1 * number2);
+          });
+        });
+
+        return result.sort(function (a, b) {
+          return a - b;
+        });
+      }
+
+      // 3. exercise
+
+      function sumOfSums(arr) {
+        var array = arr.reverse();
+        var result = 0;
+
+        array.forEach(function(element, index) {
+          result += array.slice(index).reduce(function (a, b) {
+            return a + b;
+          });
+        });
+
+        return result;
+      }
+
+      // 4. exercise
+
+      function substringsAtStart(string) {
+        return string.split('').map(function(char, index) {
+          return string.slice(0, index + 1);
+        });
+      }
+
+      // 5. exercise
+
+      function substrings(string) {
+        return string.split('').map(function(char, index) {
+          var substring = string.slice(index, string.length);
+          return substringsAtStart(substring);
+        });
+      }
+
+      // 6. exercise
+
+      function palindromes(string) {
+        var arrayOfSubstrings = flatten(substrings(string));
+
+         return arrayOfSubstrings.filter(function(substring) {
+            return isPalindrom(substring) && substring.length > 1;
+        });
+      }
+
+
+      function isPalindrom(string) {
+        return !!(string === string.split('').reverse().join(''));
+      }
+
+      function flatten(array) {
+        var result = [];
+
+        var i;
+
+        for (i = 0; i < array.length; i += 1) {
+          for (y = 0; y < array[i].length; y += 1) {
+            result.push(array[i][y]);
+          }
+        }
+
+        return result;
+      }
+
+      // 7. exercise
+
+      function buyFruit(fruitsList) {
+        return fruitsList.map(function (fruit) {
+          return repeat(fruit);
+        }).reduce(function (groceryList, fruit) {
+          return groceryList.concat(fruit);
+        });
+      }
+
+      function repeat(fruit) {
+        var result = [];
+        var i;
+
+        for (i = 0; i < fruit[1]; i += 1) {
+          result.push(fruit[0]);
+        }
+
+        return result;
+      }
+
+    </script>
+  </body>
+</html>
